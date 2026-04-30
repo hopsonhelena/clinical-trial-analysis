@@ -24,11 +24,11 @@ To run locally:
 make dashboard
 ```
 
-In VS Code (Codespaces), look at the bottom panel.  
-Click “Ports” tab   
-You should see something like:  
-**Port** 8501
-Under **Forwarded Address**: click the globe button  
+1. In VS Code (Codespaces), look at the bottom panel    
+2. Click “Ports” tab   
+3. You should see something like:  
+**Port** 8501   
+4. Under **Forwarded Address**: click the globe button  
 
 ---
 
