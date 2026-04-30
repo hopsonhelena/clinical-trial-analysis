@@ -28,7 +28,7 @@ make dashboard
 2. Click “Ports” tab   
 3. You should see something like:  
 **Port** 8501   
-4. Under **Forwarded Address**: click the globe button  
+4. Under **Forwarded Address**, click the globe button  
 
 ---
 
