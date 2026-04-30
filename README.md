@@ -2,9 +2,7 @@
 
 ## Overview
 
-This project analyzes clinical trial data to understand how the drug candidate **miraclib** affects immune cell populations. The pipeline includes data ingestion, database design, statistical analysis, and an interactive dashboard.
-
-The goal is to compare immune cell population frequencies between responders and non-responders and identify patterns that may predict treatment response.
+This project analyzes clinical trial data and immune cell populations for Bob. The pipeline includes data upload, database design, statistical analysis, and an interactive dashboard.
 
 ---
 
@@ -12,15 +10,28 @@ The goal is to compare immune cell population frequencies between responders and
 
 All steps are automated using a Makefile:
 
-```bash
-make setup
-make pipeline
-make dashboard
-```
-
 * `make setup`: installs dependencies
 * `make pipeline`: runs full analysis (data loading + outputs)
 * `make dashboard`: launches interactive dashboard
+
+---
+
+## Dashboard Link
+
+To run locally:
+
+```bash
+make dashboard
+```
+
+In VS Code (Codespaces), look at the bottom panel
+Click “Ports” tab
+You should see something like: 
+```bash
+Port 
+8501
+```
+Click the globe button under **Forwarded Address**
 
 ---
 
@@ -38,7 +49,6 @@ make dashboard
 └── README.md
 ```
 
----
 
 ## Database Schema
 
@@ -50,8 +60,8 @@ The SQLite database is normalized into three tables:
 
 ### Rationale
 
-* Reduces redundancy
-* Improves scalability for larger datasets. For example, new patient samples can be added to samples table without altering subjects table, additional analyses on existing samples can be added as new tables, and additional cell types can be added to cell counts.  
+* Reduces redundancy. For example, **subjects** table has one row per subject instead of multiple rows in the original csv.
+* Improves scalability for larger datasets. For example, additional samples from existing subjects can be added to **samples** without altering **subjects**, and new experimental analysis for existing samples can be added without altering **samples**.
 
 ---
 
@@ -71,7 +81,7 @@ The SQLite database is normalized into three tables:
   Statistical methods:
 
   * Welch’s t-test (when n > 30)
-  * Mann–Whitney U test (smaller samples)
+  * Mann–Whitney U test (smaller sample sizes)
 
 * **dashboard.py**
   Interactive dashboard for exploring results.
@@ -108,17 +118,6 @@ The SQLite database is normalized into three tables:
 * CD4 T cell frequencies differed significantly between responders and non-responders (p < 0.05)
 * However, the absolute difference (~0.6%) is small and may not be biologically meaningful
 
----
-
-## Dashboard Link
-
-To run locally:
-
-```bash
-make dashboard
-```
-
-Then open the provided local URL in your browser.
 
 ---
 
