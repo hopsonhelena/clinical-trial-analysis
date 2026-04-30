@@ -110,7 +110,7 @@ The SQLite database is normalized into three tables:
 
 ---
 
-## Dashboard
+## Dashboard Link
 
 To run locally:
 
@@ -119,15 +119,6 @@ make dashboard
 ```
 
 Then open the provided local URL in your browser.
-
----
-
-## Technologies Used
-
-* Python (pandas, numpy, sqlite3, scipy, matplotlib/seaborn)
-* SQLite
-* Streamlit (or Dash)
-* Makefile for automation
 
 ---
 

@@ -12,7 +12,7 @@ import sqlite3
 import pandas as pd
 
 DB_PATH = "clinical_trial.db"
-CSV_PATH = "data/cell-count.csv"
+CSV_PATH = "cell-count.csv"
 
 def main():
     print("Initializing database...")
