@@ -41,7 +41,7 @@ import os
 
 DB_PATH = "clinical_trial.db"
 OUTPUT_DIR = "output"
-os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 # --- Part 2: Initial Analysis - Data Overview ---
@@ -206,7 +206,7 @@ def plot_boxplot(analysis):
         pop_data = data[data["population"] == pop]
 
         # Add points, randomly sampled to reduce clutter
-        sampled = pop_data.sample(n=80, random_state=1)
+        sampled = pop_data.sample(n=min(80, len(pop_data)), random_state=1)
 
         sns.stripplot(
             data=sampled,
@@ -397,9 +397,6 @@ def average_b_cells_males_responders(conn):
 
 
 def main():
-
-    # ensure output directory exists
-    ensure_output_dir()
 
     # connect to database
     conn = sqlite3.connect(DB_PATH)
