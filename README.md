@@ -66,11 +66,10 @@ The project is organized into 3 main components:
   
   Functions are written in a modular way to improve readability, maintainability, and enable reuse.  
 
-
 * **dashboard.py**
-  Provides a Streamlit based dashboard for exploring the data. 
+  Provides a Streamlit-based dashboard for exploratory data analysis, while also enabling interactive reproduction of the outputs from `analysis.py`. 
   * Allows filtering, grouping, and visualization of results
-  * One tab  Part 2, Part 3, and Part 4 are each on separate tabs. 
+  * One tab per analysis section (3 tabs for Parts 2-4)
 
   Design choices: 
   * Part 2 data is loaded from a precomputed CSV if available, or recomputed using analysis.py, since the analysis does not depend on user-driven filtering. 
