@@ -229,7 +229,11 @@ st.title("Bob's Immune Cell Analysis Dashboard")
 
 # Tabs
 tab2, tab3, tab4 = st.tabs(
-    ["Part 2: Immune cell frequency", "Part 3: Responder Analysis", "Part 4: Subset"]
+    [
+        "Part 2: Immune cell frequency",
+        "Part 3: Responder Analysis",
+        "Part 4: Explore Samples & Subjects",
+    ]
 )
 
 
@@ -415,9 +419,9 @@ with tab4:
         st.warning("No data matches your filters.")
         st.stop()
 
-    st.dataframe(df4)
+    st.dataframe(df4, hide_index=True)
 
     group_cols = st.multiselect("Group by", GROUP_BY_OPTIONS)
     if group_cols:
         grouped = df4.groupby(group_cols).size().reset_index(name="count")
-        st.dataframe(grouped)
+        st.dataframe(grouped, hide_index=True)
