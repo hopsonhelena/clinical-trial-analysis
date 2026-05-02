@@ -41,12 +41,7 @@ import os
 
 DB_PATH = "clinical_trial.db"
 OUTPUT_DIR = "output"
-
-
-# Check if output directory exists, if not, create it
-def ensure_output_dir():
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
+os.makedirs(OUT_DIR, exist_ok=True)
 
 
 # --- Part 2: Initial Analysis - Data Overview ---
