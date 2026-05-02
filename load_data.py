@@ -2,8 +2,6 @@
 load_data.py
 Initialze SQLite data base and load cell-count.csv data (Part 1)
 
-Schema design: 
-
 Run:
     python load_data.py
 """
@@ -13,6 +11,7 @@ import pandas as pd
 
 DB_PATH = "clinical_trial.db"
 CSV_PATH = "cell-count.csv"
+
 
 def main():
     print("Initializing database...")
@@ -24,7 +23,7 @@ def main():
     conn.execute("PRAGMA foreign_keys = ON;")
 
     try:
-        # Drop existing tables 
+        # Drop existing tables
         cursor.execute("DROP TABLE IF EXISTS cell_counts")
         cursor.execute("DROP TABLE IF EXISTS samples")
         cursor.execute("DROP TABLE IF EXISTS subjects")
@@ -74,11 +73,18 @@ def main():
         subjects_df.to_sql("subjects", conn, if_exists="append", index=False)
 
         # Insert samples into samples table
-        samples_df = df[[
-                "sample", "subject", "project", "condition",
-                "treatment", "response", "sample_type",
-                "time_from_treatment_start"
-        ]]
+        samples_df = df[
+            [
+                "sample",
+                "subject",
+                "project",
+                "condition",
+                "treatment",
+                "response",
+                "sample_type",
+                "time_from_treatment_start",
+            ]
+        ]
 
         samples_df = samples_df.drop_duplicates()  # drop duplicates if any just in case
 
@@ -87,10 +93,12 @@ def main():
         # Insert cell counts in long format into cell_counts table
         cell_cols = ["b_cell", "cd8_t_cell", "cd4_t_cell", "nk_cell", "monocyte"]
 
-        df_long = df.melt(id_vars=["sample"], 
-                          value_vars=cell_cols, 
-                          var_name="population", 
-                          value_name="count")
+        df_long = df.melt(
+            id_vars=["sample"],
+            value_vars=cell_cols,
+            var_name="population",
+            value_name="count",
+        )
 
         df_long.to_sql("cell_counts", conn, if_exists="append", index=False)
 
