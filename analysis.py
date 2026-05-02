@@ -31,7 +31,6 @@ Run:
 
 import sqlite3
 import pandas as pd
-import numpy as np
 from scipy import stats
 import seaborn as sns
 import matplotlib
@@ -50,7 +49,7 @@ def ensure_output_dir():
         os.makedirs(OUTPUT_DIR)
 
 
-# Part 2: Initial Analysis - Data Overview
+# --- Part 2: Initial Analysis - Data Overview ---
 
 
 def create_frequency_table(conn):
@@ -78,7 +77,7 @@ def create_frequency_table(conn):
     return df
 
 
-# Part 3: Statistical Analysis
+# --- Part 3: Statistical Analysis ---
 
 
 def responders_vs_nonresponders_stats(conn, freq_df):
@@ -256,7 +255,7 @@ def plot_boxplot(analysis):
     print(f"\nBoxplot saved to {OUTPUT_DIR}/pt3_responder_yn_boxplot.png")
 
 
-# Part 4: Data Subset Analysis
+# --- Part 4: Data Subset Analysis ---
 """
 Filter the database to allow Bob to identify all melanoma PBMC samples at baseline (time_from_treatment_start is 0) 
 from patients who have been treated with miraclib.
@@ -338,7 +337,7 @@ def count_responders_nonresponders(conn):
     output_path = os.path.join(OUTPUT_DIR, "pt4_response_subject.csv")
     df.to_csv(output_path, index=False)
 
-    print(f"\nNumber of subjects who were responders vs non-responders:")
+    print("\nNumber of subjects who were responders vs non-responders:")
     print(df.to_string(index=False))
     print(f"\nSaved to {output_path}")
 
@@ -399,7 +398,7 @@ def average_b_cells_males_responders(conn):
     return avg_b_cells
 
 
-# Main
+# --- Main ---
 
 
 def main():

@@ -19,8 +19,7 @@ from analysis import create_frequency_table
 from scipy import stats
 
 
-# ── Constants ────────────────────────────────────────────────────────────────
-
+# --- Constants ---
 
 DB_PATH = "clinical_trial.db"
 FREQ_PATH = "output/celltype_frequency_table.csv"
@@ -44,7 +43,7 @@ GROUP_BY_OPTIONS = [
 ]
 
 
-# ── Database helpers ──────────────────────────────────────────────────────────
+# --- Database helpers ---
 
 
 def get_connection():
@@ -60,7 +59,7 @@ def get_age_bounds():
     return int(result["min_age"][0]), int(result["max_age"][0])
 
 
-# ── Data loaders ──────────────────────────────────────────────────────────────
+# --- Database loaders ---
 
 
 @st.cache_data
@@ -187,7 +186,7 @@ def load_pt4_filter_options():
     return conditions, treatments, sample_types, projects, sexes, responses, times
 
 
-# ── Analysis helpers ──────────────────────────────────────────────────────────
+# --- Analysis helpers ---
 
 
 @st.cache_data
@@ -223,7 +222,7 @@ def compute_pt3_stats(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(results).sort_values("p_value")
 
 
-# ── Page layout ───────────────────────────────────────────────────────────────
+# --- Page layout ---
 
 st.set_page_config(layout="wide")
 st.title("Bob's Immune Cell Analysis Dashboard")
@@ -234,7 +233,7 @@ tab2, tab3, tab4 = st.tabs(
 )
 
 
-# ── Tab 2 : Immune cell frequency ─────────────────────────────────────────────
+# --- Tab2 - Immune cell frequencies ---
 
 with tab2:
     st.header("Part 2: Summary of Immune Cell Frequencies")
@@ -262,7 +261,7 @@ with tab2:
         st.dataframe(df2, hide_index=True)
 
 
-# ── Tab 3 : Responder vs Non-Responder Analysis ───────────────────────────────
+# --- Tab3 - Responder vs Non-Responder Analysis ---
 
 with tab3:
     st.header("Part 3: Responder vs Non-Responder Analysis")
@@ -364,10 +363,10 @@ with tab3:
     st.dataframe(stats_df, hide_index=True)
 
 
-# ── Tab 4 : Sample Subset ─────────────────────────────────────────────────────
+# --- Tab4 - Subset Analysis ---
 
 with tab4:
-    st.header("Part 4: Sample Subset")
+    st.header("Part 4: Subset Tables")
 
     (
         cond_opts4,

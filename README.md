@@ -16,7 +16,7 @@ All steps are automated using a Makefile:
 
 ---
 
-## Dashboard Link
+## How to Access Dashboard
 
 1. In Codespaces, look at the bottom panel    
 2. Click “Ports” tab   
